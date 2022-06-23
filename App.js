@@ -2,7 +2,7 @@
 // import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import DisImage from './components/login';
+import LogIn from './components/signinscreen/LogIn';
 
 // const Stack = createNativeStackNavigator();
 
@@ -15,8 +15,7 @@ import DisImage from './components/login';
 export default function App() {
   return (
     <View>
-      <Text>Hello World</Text>
-      <DisImage />
+      <Text>Log</Text>
     </View>
   );
 }

@@ -1,15 +1,16 @@
 import React from 'react';
-import {View, ImageBackground, StyleSheet} from 'react-native';
+import {Text, View, ImageBackground, StyleSheet} from 'react-native';
 
 const img = {uri: 'https://www.globalgiving.org/pfil/21544/03_2_Large.jpg'};
 
-const DisImage = () => {
+const LogIn = () => {
     return (
         <View style={styles.container}>
-            <ImageBackground source={img} resizeMode="cover" style={styles.image}/>
+            <Text>Login</Text>
         </View>
     );
 };
+//<ImageBackground source={img} resizeMode="cover" style={styles.image}/>
 
 const styles = StyleSheet.create({
     container: {
@@ -21,4 +22,4 @@ const styles = StyleSheet.create({
       },
 });
 
-export default DisImage;
+export default LogIn;
