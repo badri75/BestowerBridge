@@ -3,7 +3,7 @@ import {Text, View, ImageBackground, StyleSheet} from 'react-native';
 
 const img = {uri: 'https://www.globalgiving.org/pfil/21544/03_2_Large.jpg'};
 
-const LogIn = () => {
+export default function LogIn() {
     return (
         <View style={styles.container}>
             <Text>Login</Text>
@@ -21,5 +21,3 @@ const styles = StyleSheet.create({
         justifyContent: "center"
       },
 });
-
-export default LogIn;
