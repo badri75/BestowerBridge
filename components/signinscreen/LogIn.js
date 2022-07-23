@@ -1,7 +1,6 @@
 import React, { useState, Component } from 'react';
 import {View, Text, ImageBackground, StyleSheet, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
-import { Form, FormItem } from 'react-native-form-component';
-import DropdownMenu from 'react-native-dropdown-menu';
+import { Form, FormItem } from 'react-native-form-component'
 
 //const img = {uri: 'https://www.globalgiving.org/pfil/21544/03_2_Large.jpg'};
 

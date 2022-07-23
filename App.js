@@ -4,6 +4,7 @@ import React, { useState, Component } from 'react';
 import {View,} from 'react-native';
 // import { Form, FormItem } from 'react-native-form-component';
 import LogIn from './components/signinscreen/LogIn';
+import Cgpa from './components/cgpa/Cgpa';
 
 
 
@@ -11,7 +12,7 @@ export default function App() {
   return (
     <View>
       {/* <Text style={{color: 'black',padding: 80}}>Hello World</Text> */}
-      <LogIn />
+      <Cgpa />
     </View>
   );
 }
