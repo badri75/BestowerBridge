@@ -1,5 +1,5 @@
 import { View, ImageBackground, StyleSheet, TextInput, TouchableOpacity, Text, KeyboardAvoidingView } from 'react-native'
-import React from 'react'
+import React, {useState} from 'react'
 import { Form, FormItem } from 'react-native-form-component';
 
 const img = {uri: 'https://www.annauniv.edu/cai/images/anna3.jpg'};
@@ -13,15 +13,47 @@ const Cgpa = () => {
                 <KeyboardAvoidingView
                     style={styles.form}
                     behavior = "position">
-                        <Text style={styles.textLogin}>Form</Text>
-                        <TextInput keyboardType="numeric" placeholder="Content Technologies"/>
-                        <TextInput keyboardType="numeric" placeholder="Maths"/>
-                        <TextInput keyboardType="numeric" placeholder="Data Structures"/>
-                        <TextInput keyboardType="numeric" placeholder="Python"/>
-                        <TextInput keyboardType="numeric" placeholder="Network"/>
-                        <TextInput keyboardType="numeric" placeholder="Researh Methodology"/>
-                        <TextInput keyboardType="numeric" placeholder="DSA Lab"/>
-                        <TextInput keyboardType="numeric" placeholder="Python Lab"/>
+                        <Text style={styles.textLogin}>GPA Calculation</Text>
+                        <Text style={{color:'#AA4A44'}}>Content Technology</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
+                        <Text style={{color:'#AA4A44'}}>Mathematics</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
+                        <Text style={{color:'#AA4A44'}}>Data Structures & Algorithm</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
+                        <Text style={{color:'#AA4A44'}}>Python</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
+                        <Text style={{color:'#AA4A44'}}>Networking</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
+                        <Text style={{color:'#AA4A44'}}>Research Methodology</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
+                        <Text style={{color:'#AA4A44'}}>DSA Lab</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
+                        <Text style={{color:'#AA4A44'}}>Python Lab</Text>
+                        <View style={styles.parent}>
+                          <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}/>
+                          <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}/>
+                        </View>
                         <TouchableOpacity style={styles.button}>
                             <Text> Submit </Text>
                         </TouchableOpacity>
@@ -50,18 +82,26 @@ const styles = StyleSheet.create({
       width: 500,
       height: 750,
     },
+    parent: {
+      flexDirection:'row',
+    },
+    left: {
+      flex: 1,
+    },
+    right: {
+      flex:1,
+    },
     textLogin: {
       fontSize: 20,
-      marginLeft: '40%',
-      color: 'white',
+      textAlign: 'center',
+      color: '#62BD69',
+      marginBottom: 15,
     },
     form: {
       flex: 1,
       padding: '5%',
       backgroundColor: 'rgba(70,70,70,0.8)',
       position: 'absolute',
-      top: '15%',
-      right: '10%',
       width: '80%',
     },
     button: {
