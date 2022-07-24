@@ -10,6 +10,13 @@ const Cgpa = () => {
     nwi: 0, nwe: 0, rmi: 0, rme: 0, dsli: 0, dsle: 0, pyli: 0, pyle: 0,
   });
 
+  function checkRange(mark,max){
+    if(mark > max){
+      alert("Maximum marks is "+max);
+      return false;
+    }
+  }
+
   function updateMark(value) {
     return setMark((prev) => {
         return { ...prev, ...value };
@@ -17,7 +24,6 @@ const Cgpa = () => {
   }
 
   function calcGrade(mark){
-    let grade = '';
     if(mark >= 90)
       return 10;
     else if(mark >= 80)
@@ -32,12 +38,16 @@ const Cgpa = () => {
 
   function calculateGPA() {
     // alert(parseInt(mark.cti) + parseInt(mark.cte));
-    let gpa = (calcGrade(parseInt(mark.cti) + parseInt(mark.cte)) * 4) + (calcGrade(parseInt(mark.mati) + parseInt(mark.mate)) * 4)
-     + (calcGrade(parseInt(mark.dsi) + parseInt(mark.dse)) * 3) + (calcGrade(parseInt(mark.pyi) + parseInt(mark.pye)) * 3)
-     + (calcGrade(parseInt(mark.nwi) + parseInt(mark.nwe)) * 3) + (calcGrade(parseInt(mark.rmi) + parseInt(mark.rme)) *2)
-     + (calcGrade(parseInt(mark.dsli) + parseInt(mark.dsle)) * 2) + (calcGrade(parseInt(mark.pyli) + parseInt(mark.pyle)) * 2);
-    gpa = gpa / 24;
-    alert(gpa);
+    let gpa = (calcGrade(parseInt(mark.cti) + parseInt(mark.cte*0.5)) * 4)
+     + (calcGrade(parseInt(mark.mati) + parseInt(mark.mate*0.6)) * 4)
+     + (calcGrade(parseInt(mark.dsi) + parseInt(mark.dse*0.6)) * 3)
+     + (calcGrade(parseInt(mark.pyi) + parseInt(mark.pye*0.6)) * 3)
+     + (calcGrade(parseInt(mark.nwi) + parseInt(mark.nwe*0.6)) * 3)
+     + (calcGrade(parseInt(mark.rmi) + parseInt(mark.rme*0.6)) *2)
+     + (calcGrade(parseInt(mark.dsli) + parseInt(mark.dsle)) * 2)
+     + (calcGrade(parseInt(mark.pyli) + parseInt(mark.pyle)) * 2);
+    gpa = gpa / 23;
+    alert("Your GPA is "+gpa);
   }
 
   return (
@@ -47,46 +57,46 @@ const Cgpa = () => {
           <ImageBackground source={img} resizeMode="cover" style={styles.image}>
             <View style={styles.child}/>
             <View style={styles.form}>
-              <Text style={styles.textLogin}>mark Calculation</Text>
+              <Text style={styles.textLogin}>GPA Calculation</Text>
               <Text style={{color:'#AA4A44'}}>Content Technology</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals (Max: 40)" style={styles.left} max={40} onChangeText={(e) => updateMark({cti: e})}/>
-                <TextInput keyboardType="numeric" placeholder="Externals (Max: 60)" style={styles.right}  onChangeText={(e) => updateMark({cte : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left} onChangeText={(e) => {if(checkRange(e,50)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals " style={styles.right}  onChangeText={(e) => {if(checkRange(e,50)) updateMark({cti: e})}}/>
               </View>
               <Text style={{color:'#AA4A44'}}>Mathematics</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => updateMark({mati : e })}/>
-                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => updateMark({mate : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => {if(checkRange(e,40)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals " style={styles.right}  onChangeText={(e) => {if(checkRange(e,60)) updateMark({cti: e})}}/>
               </View>
               <Text style={{color:'#AA4A44'}}>Data Structures & Algorithm</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => updateMark({dsi : e })}/>
-                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => updateMark({dse : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => {if(checkRange(e,40)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals " style={styles.right}  onChangeText={(e) => {if(checkRange(e,50)) updateMark({cti: e})}}/>
               </View>
               <Text style={{color:'#AA4A44'}}>Python</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => updateMark({pyi : e })}/>
-                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => updateMark({pye : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => {if(checkRange(e,40)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals " style={styles.right}  onChangeText={(e) => {if(checkRange(e,60)) updateMark({cti: e})}}/>
               </View>
               <Text style={{color:'#AA4A44'}}>Networking</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => updateMark({nwi : e })}/>
-                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => updateMark({nwe : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => {if(checkRange(e,40)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals " style={styles.right}  onChangeText={(e) => {if(checkRange(e,60)) updateMark({cti: e})}}/>
               </View>
               <Text style={{color:'#AA4A44'}}>Research Methodology</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => updateMark({rmi : e })}/>
-                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => updateMark({rme : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => {if(checkRange(e,40)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals " style={styles.right}  onChangeText={(e) => {if(checkRange(e,60)) updateMark({cti: e})}}/>
               </View>
               <Text style={{color:'#AA4A44'}}>DSA Lab</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => updateMark({dsli : e })}/>
-                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => updateMark({dsle : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => {if(checkRange(e,60)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => {if(checkRange(e,40)) updateMark({cti: e})}}/>
               </View>
               <Text style={{color:'#AA4A44'}}>Python Lab</Text>
               <View style={styles.parent}>
-                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => updateMark({pyli : e })}/>
-                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => updateMark({pyle : e })}/>
+                <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left}  onChangeText={(e) => {if(checkRange(e,60)) updateMark({cti: e})}}/>
+                <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right}  onChangeText={(e) => {if(checkRange(e,40)) updateMark({cti: e})}}/>
               </View>
               <TouchableOpacity style={styles.button} onPress={calculateGPA}>
                 <Text> Submit </Text>
