@@ -110,6 +110,22 @@ const Cgpa = () => {
   )
 }
 
+// const AddTextInput = () => {
+//   const [hidden, setHidden] = useState(true);
+
+//   return (
+//     <View style={styles.parent}>
+//       <TextInput keyboardType="numeric" placeholder="Internals" style={styles.left} />
+//       {
+//        hidden &&  <TextInput keyboardType="numeric" placeholder="Externals" style={styles.right} />
+//       }
+//       <TouchableOpacity style={styles.button} onPress={() =>setHidden(!hidden)}>
+//                 <Text> Add </Text>
+//               </TouchableOpacity>
+//     </View>
+//   )
+// }
+
 
 const styles = StyleSheet.create({
   container: {
