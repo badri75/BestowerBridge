@@ -16,7 +16,7 @@ const Input = () => {
   );
 };
 
-function Addgpa(props) {
+function Addgpa({navigation}) {
   const [inputList, setInputList] = useState([]);
   const [def,setDef] = useState();
 
@@ -28,7 +28,7 @@ function Addgpa(props) {
 
   const navigate = () => {
     navigation.navigate('List', {
-      inp: inputList,
+      gpa: 10,
     });
   }
 
@@ -45,7 +45,7 @@ function Addgpa(props) {
               <TouchableOpacity  style={styles.button}  onPress={onAddBtnClick}>
                 <Text>Add input</Text>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => {props.isLive(def)}}>
+              <TouchableOpacity onPress={navigate}>
                 <Text>Calculate</Text>
               </TouchableOpacity>
             </View>

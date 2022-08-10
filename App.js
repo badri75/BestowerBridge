@@ -44,16 +44,17 @@ export default class App extends React.Component {
   render(){
 
     return (
-      <View>
+      <NavigationContainer>
         {/* <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name='Home' component={Addgpa} />
-        </Stack.Navigator>
         </NavigationContainer> */}
         {/* <Text style={{color: 'black',padding: 80}}>Hello World</Text>
           <Cgpa />
-          <Addgpa /> */}
-          {this.state.live ?
+        <Addgpa /> */}
+        <Stack.Navigator initialRouteName='Home'>
+          <Stack.Screen name='Home' component={Cgpa} />
+          <Stack.Screen name='List' component={Disp} />
+        </Stack.Navigator>
+          {/* {this.state.live ?
            <Disp 
               isLive1 = {this.isLive1}
               gpa = {this.gpa}
@@ -61,8 +62,8 @@ export default class App extends React.Component {
             <Addgpa
              isLive = {this.isLive}
               gpa = {this.gpa}
-            />}
-      </View>
+            />} */}
+      </NavigationContainer>
     );    
   }
 }

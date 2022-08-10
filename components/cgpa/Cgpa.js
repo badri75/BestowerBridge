@@ -1,10 +1,10 @@
-import { View, ImageBackground, StyleSheet, TextInput, TouchableOpacity, Text, ScrollView } from 'react-native'
+import { View, ImageBackground, StyleSheet, TextInput, TouchableOpacity, Text, ScrollView, Alert } from 'react-native'
 import React, {useState} from 'react'
 import { Form, FormItem } from 'react-native-form-component';
 
 const img = {uri: 'https://www.annauniv.edu/cai/images/anna3.jpg'};
 
-const Cgpa = () => {
+const Cgpa = ({navigation}) => {
   const [mark, setMark] = useState({
     cti: 0, cte: 0, mati: 0, mate: 0, dsi: 0, dse: 0, pyi: 0, pye: 0, 
     nwi: 0, nwe: 0, rmi: 0, rme: 0, dsli: 0, dsle: 0, pyli: 0, pyle: 0,
@@ -25,30 +25,26 @@ const Cgpa = () => {
     });
   }
 
-  function calcGrade(mark){
-    if(mark >= 90)
-      return 10;
-    else if(mark >= 80)
-      return 9;
-    else if(mark >= 70)
-      return 8;
-    else if(mark >= 60)
-      return 7;
-    else if(mark >= 50)
-      return 6;
-  }
-
   function calculateGPA() {
     // alert(parseInt(mark.cti) + parseInt(mark.cte));
-    let gpa = (calcGrade(parseInt(mark.cti) + parseInt(mark.cte*0.5)) * 4)
-     + (calcGrade(parseInt(mark.mati) + parseInt(mark.mate*0.6)) * 4)
-     + (calcGrade(parseInt(mark.dsi) + parseInt(mark.dse*0.6)) * 3)
-     + (calcGrade(parseInt(mark.pyi) + parseInt(mark.pye*0.6)) * 3)
-     + (calcGrade(parseInt(mark.nwi) + parseInt(mark.nwe*0.6)) * 3)
-     + (calcGrade(parseInt(mark.rmi) + parseInt(mark.rme*0.6)) *2)
-     + (calcGrade(parseInt(mark.dsli) + parseInt(mark.dsle)) * 2)
-     + (calcGrade(parseInt(mark.pyli) + parseInt(mark.pyle)) * 2);
-    alert("Your GPA is "+gpa/23);
+    let gpa = (((parseInt(mark.cti) + parseInt(mark.cte*0.5)) * 4)/10 + 1)
+     + (((parseInt(mark.mati) + parseInt(mark.mate*0.6)) * 4)/10 + 1)
+     + (((parseInt(mark.dsi) + parseInt(mark.dse*0.6)) * 3)/10 + 1)
+     + (((parseInt(mark.pyi) + parseInt(mark.pye*0.6)) * 3)/10 + 1)
+     + (((parseInt(mark.nwi) + parseInt(mark.nwe*0.6)) * 3)/10 + 1)
+     + (((parseInt(mark.rmi) + parseInt(mark.rme*0.6)) *2)/10 + 1)
+     + (((parseInt(mark.dsli) + parseInt(mark.dsle)) * 2)/10 + 1)
+     + (((parseInt(mark.pyli) + parseInt(mark.pyle)) * 2)/10 + 1);
+    gpa = (gpa/23).toFixed(2);
+    Alert.alert(  
+      'Your First Semester GPA', gpa, [{
+        text: 'OK', onPress: () => {
+          navigation.navigate('List', {
+            gpa1: gpa,
+          });
+        }},  
+      ]  
+    );  
   }
 
   return (
