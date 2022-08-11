@@ -15,6 +15,10 @@ const Cgpa = ({navigation}) => {
       alert("Maximum marks is "+max);
       return false;
     }
+    // else if((max > 45) && (mark < 45)){
+    //   alert("You are not eligible for result");
+    //   return false;
+    // }
     else
       return true;
   }
@@ -25,21 +29,35 @@ const Cgpa = ({navigation}) => {
     });
   }
 
+  function calcGrade(mark){
+    if(mark >= 90)
+      return 10;
+    else if(mark >= 80)
+      return 9;
+    else if(mark >= 70)
+      return 8;
+    else if(mark >= 60)
+      return 7;
+    else if(mark >= 50)
+      return 6;
+  }
+
   function calculateGPA() {
     // alert(parseInt(mark.cti) + parseInt(mark.cte));
-    let gpa = (((parseInt(mark.cti) + parseInt(mark.cte*0.5)) * 4)/10 + 1)
-     + (((parseInt(mark.mati) + parseInt(mark.mate*0.6)) * 4)/10 + 1)
-     + (((parseInt(mark.dsi) + parseInt(mark.dse*0.6)) * 3)/10 + 1)
-     + (((parseInt(mark.pyi) + parseInt(mark.pye*0.6)) * 3)/10 + 1)
-     + (((parseInt(mark.nwi) + parseInt(mark.nwe*0.6)) * 3)/10 + 1)
-     + (((parseInt(mark.rmi) + parseInt(mark.rme*0.6)) *2)/10 + 1)
-     + (((parseInt(mark.dsli) + parseInt(mark.dsle)) * 2)/10 + 1)
-     + (((parseInt(mark.pyli) + parseInt(mark.pyle)) * 2)/10 + 1);
+    let gpa = (calcGrade(parseInt(mark.cti) + parseInt(mark.cte*0.5)) * 4)
+     + (calcGrade(parseInt(mark.mati) + parseInt(mark.mate*0.6)) * 4)
+     + (calcGrade(parseInt(mark.dsi) + parseInt(mark.dse*0.6)) * 3)
+     + (calcGrade(parseInt(mark.pyi) + parseInt(mark.pye*0.6)) * 3)
+     + (calcGrade(parseInt(mark.nwi) + parseInt(mark.nwe*0.6)) * 3)
+     + (calcGrade(parseInt(mark.rmi) + parseInt(mark.rme*0.6)) *2)
+     + (calcGrade(parseInt(mark.dsli) + parseInt(mark.dsle)) * 2)
+     + (calcGrade(parseInt(mark.pyli) + parseInt(mark.pyle)) * 2);
+    alert("Your GPA is "+gpa/23);
     gpa = (gpa/23).toFixed(2);
     Alert.alert(  
       'Your First Semester GPA', gpa, [{
         text: 'OK', onPress: () => {
-          navigation.navigate('List', {
+          navigation.navigate('Sem 2', {
             gpa1: gpa,
           });
         }},  

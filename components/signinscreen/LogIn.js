@@ -4,46 +4,65 @@ import { Form, FormItem } from 'react-native-form-component'
 
 //const img = {uri: 'https://www.globalgiving.org/pfil/21544/03_2_Large.jpg'};
 
-// const Stack = createNativeStackNavigator();
-
-// <NavigationContainer>
-//   <Stack.Navigator>
-//     <Stack.Screen> <Text>Hello World</Text> </Stack.Screen>
-//   </Stack.Navigator>
-// </NavigationContainer>
-
 const img = {uri: 'https://www.globalgiving.org/pfil/21544/03_2_Large.jpg'};
 
 class LogIn extends Component {
   //const [passwordVisible, setPasswordVisible] = useState(true);
-  constructor(){
+  constructor({navigation}) {
     super();
     this.state = {
       email: '',
       password: '',
-      pin: '640015',
+      agencyname: '',
+      address: '',
+      pin: '',
+      phone: '',
+      area: '',
+      navigation: navigation,
     }
   }
-  // this.swayam = "Smith Street, San Francisco, CA";
-  // state = {
-  //   email: '',
-  //   password: ''
-  // }
+  
   handleEmail = (text) => {
       this.setState({ email: text })
   }
   handlePassword = (text) => {
       this.setState({ password: text })
   }
-  login = (email, pass) => {
-      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if(!email.match(mailformat))
-        alert('Please enter a valid Email address');
-      else if(!(pass.length >= 8))
-        alert('Password must be at least 8 characters long');
-      else
-        alert('email: ' + email + ' password: ' + pass);
+  handleAgencyName = (text) => {
+      this.setState({ agencyname: text })
   }
+  handleAddress = (text) => {
+      this.setState({ address: text })
+  }
+  handleArea = (text) => {
+      this.setState({ area: text })
+  }
+  handlePin = (text) => {
+      this.setState({ pin: text })
+  }
+  handlePhone = (text) => {
+      this.setState({ phone: text })
+  }
+
+  login = () => {
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if(!this.state.email.match(mailformat))
+        alert('Please enter a valid Email address');
+      else if(!(this.state.password.length >= 8))
+        alert('Password must be at least 8 characters long');
+      else if((this.state.pin.length != 6) && (parseInt(Math.trunc(this.state.pin/100000)) != 6))
+        alert('Pincode doesn\'t belong to TN');
+      else if(!(this.state.phone.length == 10))
+        alert('Phone number must be 10 digits long');
+      else{
+        this.state.navigation.navigate('Form Continued', {
+          email: this.state.email,
+          name: this.state.agencyname,
+          phone: this.state.phone,
+        });
+      }
+  }
+
   render() {
     return (
         <View style={styles.container}>
@@ -53,24 +72,25 @@ class LogIn extends Component {
                 style={styles.form}
                 // keyboardVerticalOffset = {Header.HEIGHT + 20} // adjust the value here if you need more padding
                 behavior = "position">
-                  <Text style={styles.textLogin}>Form</Text>
-                  <TextInput placeholder="Enter Email" onChangeText = {this.handleEmail}/>
+                  <Text style={styles.textLogin}>Register your NGO</Text>
+                  <TextInput placeholder="Enter Email" onChangeText = {this.handleEmail} autoCapitalize={"none"}/>
                   <TextInput
                     secureTextEntry={true}
                     placeholder="Enter Password"
                     // right={<TextInput.Icon name={passwordVisible ? "eye" : "eye-off"} onPress={() => setPasswordVisible(!passwordVisible)} />}
                     onChangeText = {this.handlePassword}
                   />
-                  <TextInput placeholder="Address" multiline/>
-                  <TextInput placeholder="Area"/>
-                  <TextInput placeholder="Pincode" defaultValue={this.pin}/>
-                  <TextInput placeholder="Phone Number"/>
+                  <TextInput placeholder="Agency Name" onChangeText = {this.handleAgencyName}/>
+                  <TextInput placeholder="Address" multiline onChangeText = {this.handleAddress}/>
+                  <TextInput placeholder="Area" onChangeText = {this.handleArea}/>
+                  <TextInput placeholder="Pincode" onChangeText = {this.handlePin} keyboardType="numeric" />
+                  <TextInput placeholder="Phone Number" onChangeText = {this.handlePhone} keyboardType="numeric" />
                   <TouchableOpacity
                     style={styles.button}
                     onPress = {
-                      () => this.login(this.state.email, this.state.password)
+                      () => this.login()
                     }>
-                    <Text> Submit </Text>
+                    <Text> Next </Text>
                   </TouchableOpacity>
               </KeyboardAvoidingView>
             </ImageBackground>
@@ -81,16 +101,16 @@ class LogIn extends Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      //flex: 1,
       justifyContent: "center",
     },
     image: {
-      flex: 1,
+      //flex: 1,
       justifyContent: "center",
       alignItems: 'center',
       //backgroundColor: 'rgba(0,0,0,0.5)',
       width: '100%',
-      height: 570,
+      height: '100%',
     },
     child: {
       flex: 1,
@@ -100,16 +120,18 @@ const styles = StyleSheet.create({
     },
     textLogin: {
       fontSize: 20,
-      marginLeft: '40%',
-      color: 'white',
+      marginLeft: '17%',
+      color: '#AA4A44',
+      // justifyContent: "center",
+      // alignItems: "center",
     },
     form: {
       flex: 1,
       padding: '5%',
       backgroundColor: 'rgba(70,70,70,0.8)',
       position: 'absolute',
-      top: 100,
-      right: '10%',
+      // top: 100,
+      // right: '10%',
       width: '80%',
     },
     button: {

@@ -3,7 +3,7 @@
 import React, { useState, Component } from 'react';
 import {View,} from 'react-native';
 // import { Form, FormItem } from 'react-native-form-component';
-// import LogIn from './components/signinscreen/LogIn';
+import LogIn from './components/signinscreen/LogIn';
 import Cgpa from './components/cgpa/Cgpa';
 import Addgpa from './components/addgpa/Addgpa';
 import Disp from './components/disp/Disp';
@@ -50,9 +50,9 @@ export default class App extends React.Component {
         {/* <Text style={{color: 'black',padding: 80}}>Hello World</Text>
           <Cgpa />
         <Addgpa /> */}
-        <Stack.Navigator initialRouteName='Home'>
-          <Stack.Screen name='Home' component={Cgpa} />
-          <Stack.Screen name='List' component={Disp} />
+        <Stack.Navigator initialRouteName='GPA'>
+          <Stack.Screen name='GPA' component={Cgpa} />
+          <Stack.Screen name='Form Continued' component={Disp} />
         </Stack.Navigator>
           {/* {this.state.live ?
            <Disp 
