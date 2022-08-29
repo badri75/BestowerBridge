@@ -7,6 +7,8 @@ import LogIn from './components/signinscreen/LogIn';
 import Cgpa from './components/cgpa/Cgpa';
 import Addgpa from './components/addgpa/Addgpa';
 import Disp from './components/disp/Disp';
+import User from './components/createUser/User';
+import Home from './components/home/Home';
 //import {Addgpa, Cgpa, Disp} from './components/';
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
@@ -50,9 +52,11 @@ export default class App extends React.Component {
         {/* <Text style={{color: 'black',padding: 80}}>Hello World</Text>
           <Cgpa />
         <Addgpa /> */}
-        <Stack.Navigator initialRouteName='GPA'>
-          <Stack.Screen name='GPA' component={Cgpa} />
+        <Stack.Navigator initialRouteName='Login'>
+          <Stack.Screen name='Login' component={LogIn} />
           <Stack.Screen name='Form Continued' component={Disp} />
+          <Stack.Screen name='Sign Up' component={User} />
+          <Stack.Screen name='Home' component={Home} />
         </Stack.Navigator>
           {/* {this.state.live ?
            <Disp 
